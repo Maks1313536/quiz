@@ -1,0 +1,103 @@
+
+
+
+
+
+html {
+    font-family: sans-serif;
+    background-image: url(qw3.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  form {
+    width: 300px; /* adjust the width to your liking */
+    text-align: center;
+  }
+  
+  fieldset {
+    border: none;
+    padding: 20px;
+    background-color: #f7f7f7;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  legend {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  label {
+    margin-bottom: 10px;
+  }
+  
+  input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+  
+    border: 2px solid #999;
+    transition: 0.2s all linear;
+    outline: none;
+    margin-right: 5px;
+  
+    position: relative;
+    top: 4px;
+  }
+  
+  input[type="radio"]:checked {
+    border: 6px solid black;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .form_radio_btn input[type=radio]:checked + label {
+      background: #ffe0a6;
+  }
+   
+  /* Hover */
+  .form_radio_btn label:hover {
+      color: #666;
+  }
+  .form_radio_btn input[type=radio] {
+      display: none;
+  }
+  /* Disabled */
+  .form_radio_btn input[type=radio]:disabled + label {
+      background: #efefef;
+      color: #666;
+  }
+  button[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
