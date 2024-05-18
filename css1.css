@@ -1,72 +1,87 @@
 
 
-.body{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-    background-image: url("qw.jpg");
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
 
-}
-.s {
-    appearance: none; /* убираем стандартное отображение выпадающего списка */
-    padding: 10px; /* добавляем отступы для текста */
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    background-color: #f19;
-    transition: all 0.3s; /* добавляем плавный переход для анимации */
-  }
-  
-  select:hover {
-    background-color: rgb(250, 124, 7); /* изменяем цвет фона при наведении */
-  }
-  
-  select:focus {
-    border-color: #007bff; /* изменяем цвет границы при фокусе */
-  }
-  
-  /* Создаем анимацию для появления списка */
-  select option {
-    transition: all 0.3s; /* добавляем плавный переход */
-    opacity: 0; /* устанавливаем начальное значение прозрачности 0 */
-    transform: translateY(-20px); /* перемещаем элемент вверх на 20px */
-  }
-  
-  select:hover option {
-    opacity: 1; /* при наведении делаем элемент видимым */
-    transform: translateY(0); /* при наведении возвращаем элемент на исходное положение */}
-.img{
-  background-image: url("eq.jpg");
+
+
+html {
+  font-family: sans-serif;
+  background-image: url(qw.jpg);
   background-size: cover;
-  width: 100%;
-  height: 100%;
   background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
 }
 
-.form_radio_btn {
-	display: block;
-	margin-right: 10px;
+body {
+  display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  margin: 0;
 }
-.form_radio_btn input[type=radio] {
-	display: none;
+
+form {
+  width: 300px; /* adjust the width to your liking */
+  text-align: center;
 }
-.form_radio_btn label {
-	display: inline-block;
-	cursor: pointer;
-	padding: 0px 15px;
-	line-height: 34px;
-	border: 1px solid #999;
-	border-radius: 6px;
-	user-select: none;
+
+fieldset {
+  border: none;
+  padding: 20px;
+  background-color: #f7f7f7;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
- 
-/* Checked */
+
+legend {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  outline: none;
+  margin-right: 5px;
+
+  position: relative;
+  top: 4px;
+}
+
+input[type="radio"]:checked {
+  border: 6px solid black;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .form_radio_btn input[type=radio]:checked + label {
 	background: #ffe0a6;
 }
@@ -75,52 +90,14 @@
 .form_radio_btn label:hover {
 	color: #666;
 }
- 
+.form_radio_btn input[type=radio] {
+	display: none;
+}
 /* Disabled */
 .form_radio_btn input[type=radio]:disabled + label {
 	background: #efefef;
 	color: #666;
 }
-
-  .div1{
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-	
-	  align-items: center;
-	  
-}
-
-form {
-  background-color: #fff;
-  padding: 0.5em 1em;
-  display: grid;
-  grid-template-columns: repeat(2, [col] 1fr);
-}
-
-fieldset {
-  padding: 0 1em;
-  margin: 0 0.5em 1em 0.5em;
-}
-
-fieldset:nth-child(2) {
-  line-height: 1.8;
-  letter-spacing: 0.12em;
-  word-spacing: 0.16em;
-  font-size: 110%;
-}
-
-form details div {
-  display: inline-block;
-  margin: 0.25em;
-}
-
-form div {
-  box-sizing: border-box;
-  margin: 1em 0;
-}
-
-label {
-  display: block;
-  margin: 0.25em 0;
+button[type="submit"]:hover {
+  background-color: #3e8e41;
 }
