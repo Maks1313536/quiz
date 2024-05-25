@@ -6,6 +6,14 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css1.css') }}"> 
 
     {% endif %}
+    {%if c == 2 %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css2.css') }}"> 
+
+    {% endif %}
+    {%if c == 3 %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css3.css') }}"> 
+
+    {% endif %}
     <title>Викторина</title> 
 </head> 
 <body> 
@@ -25,7 +33,7 @@
             </div>
         {% endfor %}  
         </div>
-        <input type="submit" value="Ответить"> 
+        <button type="submit", name = "quiz">Отправить</button>
         <fieldset>
     </form> 
 
