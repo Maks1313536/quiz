@@ -13,16 +13,24 @@
         <fieldset>
             <legend>Викторины</legend>
         <div class = "title"><h1>Выберите одну из предоставленefrfreerfных викторин</h1></div>
-            <div class = "select">
+            <div class = "div1">
             <select  name = "quiz">
             {% for val, quiz in quizes %} 
             <option value="{{val}}">{{quiz}}</option>
             {% endfor %} 
             </select>
-            <input type='submit' value='Выбрать'> 
             </div>
+            <button type="submit", name = "quiz">Отправить</button>
         </fieldset>
     </form> 
 
 
-</html>
+</html><!DOCTYPE html> 
+<html> 
+<div class = "img">
+<head> 
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='q.css') }}"> 
+    <title>Викторина</title> 
+</head> 
+
