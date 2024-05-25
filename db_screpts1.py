@@ -1,7 +1,6 @@
-
 import sqlite3
  
-db_name = 'quiz1.sqlite'
+db_name = 'quiz.sqlite'
 conn = None
 cursor = None
  
@@ -17,8 +16,8 @@ def close():
 def do(query):
     cursor.execute(query)
     conn.commit()
- 
-def clear_db():
+    return cursor
+def clear_db(): #0
     ''' удаляет все таблицы '''
     open()
     query = '''DROP TABLE IF EXISTS quiz_content'''
@@ -29,28 +28,14 @@ def clear_db():
     do(query)
     close()
  
-def create():
+def create(): #0
     open()
     cursor.execute('''PRAGMA foreign_keys=on''')
     do('''CREATE TABLE IF NOT EXISTS quiz (id INTEGER PRIMARY KEY, name VARCHAR)''')
     do('''CREATE TABLE IF NOT EXISTS question (id INTEGER PRIMARY KEY, question VARCHAR, answer VARCHAR, wrong1 VARCHAR, wrong2 VARCHAR, wrong3 VARCHAR)''')
     do('''CREATE TABLE IF NOT EXISTS quiz_content (id INTEGER PRIMARY KEY, quiz_id INTEGER, question_id INTEGER, FOREIGN KEY (quiz_id) REFERENCES quiz (id), FOREIGN KEY (question_id) REFERENCES question (id))''')
     close()
-def check_answer(q_id, ans_text):
-    query = '''SELECT question.answer FROM quiz_content, question WHERE quiz_content.id = ? AND quiz_content.question_id = question.id'''
-    open()
-    print(q_id)
-    cursor.execute(query, (str(q_id)))
-    result = cursor.fetchone()
-    close()
-    if result is None:
-        return False
-    else:
-        if result[0] == ans_text:
-            return True
-        else:
-            return False
-
+ 
 def show(table):
     query = 'SELECT * FROM ' + table
     open()
@@ -63,19 +48,35 @@ def show_tables():
     show('quiz')
     show('quiz_content')
  
-
- 
-def get_question_after(question_id = 0, quiz_id=1):
+def check_answer(q_id, ans_text):
+    query = '''SELECT question.answer FROM quiz_content, question WHERE quiz_content.id = ? AND quiz_content.question_id = question.id'''
     open()
-    query = '''SELECT quiz_content.id, question, question.answer, question.wrong1, question.wrong2, question.wrong3
+    print(q_id)
+    cursor.execute(query, (str(q_id),))
+    result = cursor.fetchone()
+    close()
+    if result is None:
+        return False
+    else:
+        if result[0] == ans_text:
+            return True
+        else:
+            return False
+def get_quiz_count():
+    open()
+    query = '''SELECT MAX(quiz_id) FROM quiz_content'''
+    close()
+ 
+def get_question_after(question_id = 0, quiz_id=1): #0
+    open()
+    query = '''SELECT quiz_content.id, question, question.answer, question.wrong1, question.wrong2, question.wrong3 
     FROM quiz_content, question WHERE quiz_content.question_id == question.id 
     AND quiz_content.id > ? AND quiz_content.quiz_id == ? ORDER BY quiz_content.id'''
-    print(query)
     cursor.execute(query, [question_id, quiz_id])
     result = cursor.fetchone()
     close()
     return result 
-def add_questions():
+def add_questions(): #0
     open()
     query = "INSERT INTO quiz_content (quiz_id, question_id) VALUES (?,?)"
     answer = input("Добавить связь (y / n)?")
@@ -86,13 +87,14 @@ def add_questions():
         conn.commit()
         answer = input("Добавить связь (y / n)?")
     close()
-
-def add_quiz(): # викторина
+ 
+def add_quiz(): # викторина #0
     quizes = [('Случайность', ), ('Математика', ), ('Игры', )]
     open()
     cursor.executemany('''INSERT INTO quiz (name) VALUES (?)''', quizes)
     conn.commit()
     close()
+ 
  
 def add_links(): # вопросы
     list_q = [
